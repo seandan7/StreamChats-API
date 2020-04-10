@@ -18,7 +18,7 @@ export const addNewCustomer = (req, res) => {
 };
 export const addNewSaveMessage = (req, res) => {
   var newMessage = req.body;
-  var sql = `INSERT INTO messages (message, name) VALUES ('${newMessage.name}','${newMessage.message}')`;
+  var sql = `INSERT INTO messages (name, messages) VALUES ('${newMessage.name}','${newMessage.message}')`;
   con.query(sql, (err, result) => {
     if (err) throw err;
     console.log(`1 record inserted ${result}`);
