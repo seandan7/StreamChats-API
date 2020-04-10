@@ -9,7 +9,7 @@ var con = mysql.createConnection({
 
 export const addNewCustomer = (req, res) => {
   var newCustomer = req.body;
-  var sql = `INSERT INTO customers (name) VALUES ('${newCustomer.name}')`;
+  var sql = `INSERT INTO customers (name, email) VALUES ('${newCustomer.name}', '${newCustomer.email}')`;
   con.query(sql, (err, result) => {
     if (err) throw err;
     console.log(`1 Record inserted ${result}`);
