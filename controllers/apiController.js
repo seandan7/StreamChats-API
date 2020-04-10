@@ -13,7 +13,7 @@ export const addNewCustomer = (req, res) => {
   con.query(sql, (err, result) => {
     if (err) throw err;
     console.log(`1 Record inserted ${result}`);
-    res.send("Ok");
+    res.json(result);
   });
 };
 export const addNewSaveMessage = (req, res) => {
@@ -23,5 +23,13 @@ export const addNewSaveMessage = (req, res) => {
     if (err) throw err;
     console.log(`1 record inserted ${result}`);
     res.send("Ok");
+  });
+};
+
+export const getSavedMessages = (req, res) => {
+  var sql = `SELECT * FROM messages`;
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    res.send(result);
   });
 };

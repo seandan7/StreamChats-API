@@ -2,7 +2,11 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 
-import { addNewCustomer, addNewSaveMessage } from "./controllers/apiController";
+import {
+  addNewCustomer,
+  addNewSaveMessage,
+  getSavedMessages,
+} from "./controllers/apiController";
 const app = express();
 
 app.use(cors());
@@ -16,9 +20,7 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
-  res.send(`Node and express server on ${PORT}`);
-});
+app.get("/api/savedMessages", getSavedMessages);
 app.listen(PORT, () => {
   console.log(`Server on ${PORT}`);
 });
