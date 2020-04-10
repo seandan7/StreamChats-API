@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-
+import { addNewCustomer } from "./controllers/apiController";
 const app = express();
 
 const PORT = 4000;
@@ -19,3 +19,6 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server on ${PORT}`);
 });
+
+// ON Company Sign Up, create new customer
+app.post("/api/newCustomer", addNewCustomer);
