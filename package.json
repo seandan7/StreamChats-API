@@ -1,0 +1,30 @@
+{
+  "name": "streamchats-api",
+  "version": "1.0.0",
+  "description": "A private web app API that connects to database when users save a chat.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./index.js --exec babel-node -e js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seandan7/StreamChats-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seandan7/StreamChats-API/issues"
+  },
+  "homepage": "https://github.com/seandan7/StreamChats-API#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
+    "body-parser": "^1.19.0"
+  }
+}
