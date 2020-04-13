@@ -1,12 +1,12 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-
 import {
   addNewCustomer,
   addNewSaveMessage,
   getSavedMessages,
 } from "./controllers/apiController";
+
 const app = express();
 
 app.use(cors());
@@ -20,14 +20,15 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.get("/api/savedMessages", getSavedMessages);
 app.listen(PORT, () => {
   console.log(`Server on ${PORT}`);
 });
+
+app.get("/api/savedMessages", getSavedMessages);
 
 // ON Company Sign Up, create new customer
 app.post("/api/newCustomer", addNewCustomer);
 
 // On Message Save
-// // ON Company Sign Up, create new customer
+// // ON Company Sign Up, create new message
 app.post("/api/newMessage", addNewSaveMessage);
