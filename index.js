@@ -1,5 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
+var http = require("http").createServer(app);
+
 import cors from "cors";
 import {
   addNewCustomer,
@@ -7,6 +9,10 @@ import {
   getSavedMessages,
   addNewTempMessage,
 } from "./controllers/apiController";
+var io = require("socket.io")(http);
+io.on("connection", (socket) => {
+  console.log("a user connected");
+});
 
 const app = express();
 
