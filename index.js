@@ -5,6 +5,7 @@ import {
   addNewCustomer,
   addNewSaveMessage,
   getSavedMessages,
+  addNewTempMessage,
 } from "./controllers/apiController";
 
 const app = express();
@@ -32,3 +33,5 @@ app.post("/api/newCustomer", addNewCustomer);
 // On Message Save
 // // ON Company Sign Up, create new message
 app.post("/api/newMessage", addNewSaveMessage);
+
+app.post("/api/newTempMessage", addNewTempMessage);

@@ -33,3 +33,21 @@ export const getSavedMessages = (req, res) => {
     res.send(result);
   });
 };
+
+export const addNewTempMessage = (req, res) => {
+  var newMessage = req.body;
+  var sql = `INSERT INTO messages (name, message) VALUES ('${newMessage.name}','${newMessage.message}')`;
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(`1 record inserted ${result}`);
+    setTimeout(function () {
+      var sql = `DELETE FROM messages WHERE message = '${newMessage.message}'`;
+      con.query(sql, (err, result) => {
+        if (err) throw err;
+        console.log(`1 record removed ${result}`);
+      });
+    }, 10000);
+    res.send("Ok");
+  });
+  // TODO - make this use primary key
+};
