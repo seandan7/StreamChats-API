@@ -18,7 +18,7 @@ export const addNewCustomer = (req, res) => {
 };
 export const addNewSaveMessage = (req, res) => {
   var newMessage = req.body;
-  var sql = `INSERT INTO messages (name, message) VALUES ('${newMessage.name}','${newMessage.message}')`;
+  var sql = `INSERT INTO messages (name, message, temp) VALUES ('${newMessage.name}','${newMessage.message}', '0')`;
   con.query(sql, (err, result) => {
     if (err) throw err;
     console.log(`1 record inserted ${result}`);
@@ -36,12 +36,12 @@ export const getSavedMessages = (req, res) => {
 
 export const addNewTempMessage = (req, res) => {
   var newMessage = req.body;
-  var sql = `INSERT INTO messages (name, message) VALUES ('${newMessage.name}','${newMessage.message}')`;
+  var sql = `INSERT INTO messages (name, message, temp) VALUES ('${newMessage.name}','${newMessage.message}', 'true')`;
   con.query(sql, (err, result) => {
     if (err) throw err;
     console.log(`1 record inserted ${result}`);
     setTimeout(function () {
-      var sql = `DELETE FROM messages WHERE message = '${newMessage.message}'`;
+      var sql = `DELETE FROM messages WHERE message = '${newMessage.message}' AND temp='1'`;
       con.query(sql, (err, result) => {
         if (err) throw err;
         console.log(`1 record removed ${result}`);
