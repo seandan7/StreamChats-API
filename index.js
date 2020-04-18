@@ -32,9 +32,7 @@ var server = app.listen(PORT, () => {
   console.log(`Server on ${PORT}`);
 });
 var io = require("socket.io").listen(server);
-io.on("connection", (socket) => {
-  console.log("a user connected");
-});
+
 app.get("/api/savedMessages", getSavedMessages);
 
 // ON Company Sign Up, create new customer
@@ -46,5 +44,9 @@ app.post("/api/newMessage", addNewSaveMessage);
 
 app.post("/api/newTempMessage", addNewTempMessage);
 io.on("connection", (socket) => {
+  socket.emit("welcome-message", "Welcome to the chatroom");
   console.log("a user connected");
+  socket.on("sent-message", (message) => {
+    console.log(message);
+  });
 });
