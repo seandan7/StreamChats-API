@@ -1,6 +1,5 @@
 import express from "express";
 import bodyParser from "body-parser";
-var http = require("http").createServer(app);
 
 import cors from "cors";
 import {
@@ -9,14 +8,16 @@ import {
   getSavedMessages,
   addNewTempMessage,
 } from "./controllers/apiController";
-var io = require("socket.io")(http);
-io.on("connection", (socket) => {
-  console.log("a user connected");
-});
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["chrome-extension://aimcllkabmebgcedempppbeglclbmfka"],
+    credentials: true,
+  })
+);
+
 const PORT = 4000;
 
 //bodyParser setup
@@ -27,10 +28,13 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.listen(PORT, () => {
+var server = app.listen(PORT, () => {
   console.log(`Server on ${PORT}`);
 });
-
+var io = require("socket.io").listen(server);
+io.on("connection", (socket) => {
+  console.log("a user connected");
+});
 app.get("/api/savedMessages", getSavedMessages);
 
 // ON Company Sign Up, create new customer
@@ -41,3 +45,6 @@ app.post("/api/newCustomer", addNewCustomer);
 app.post("/api/newMessage", addNewSaveMessage);
 
 app.post("/api/newTempMessage", addNewTempMessage);
+io.on("connection", (socket) => {
+  console.log("a user connected");
+});
