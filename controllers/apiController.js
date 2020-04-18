@@ -49,5 +49,16 @@ export const addNewTempMessage = (req, res) => {
     }, 10000);
     res.send("Ok");
   });
-  // TODO - make this use primary key
+};
+
+export const unsaveMessage = (req, res) => {
+  var messageToDelete = req.body;
+
+  var sql = `DELETE FROM messages WHERE message = '${messageToDelete.messageToRemoveBody}'`;
+
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(`1 record removed`);
+  });
+  res.send("Ok");
 };

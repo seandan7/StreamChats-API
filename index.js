@@ -7,6 +7,7 @@ import {
   addNewSaveMessage,
   getSavedMessages,
   addNewTempMessage,
+  unsaveMessage,
 } from "./controllers/apiController";
 
 const app = express();
@@ -43,6 +44,8 @@ app.post("/api/newCustomer", addNewCustomer);
 app.post("/api/newMessage", addNewSaveMessage);
 
 app.post("/api/newTempMessage", addNewTempMessage);
+
+app.post("/api/unsaveMessage", unsaveMessage);
 io.on("connection", (socket) => {
   socket.emit("welcome-message", "Welcome to the chatroom");
   console.log("a user connected");
